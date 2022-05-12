@@ -1,27 +1,31 @@
 #include <stdio.h>
-struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
-	struct ListNode* p1 = l1;
-	struct ListNode* p2 = l2;
-	struct ListNode* ans = (struct ListNode*)malloc(sizeof(struct ListNode));
-	ans->val = 0;
-	struct ListNode* p = 0;
-	int c = 0;
-	while(p1 != 0 || p2 != 0 || c !=0){
-		if(p==0){
-			p = ans;
-		}else{
-			p -> next = (struct ListNode*)malloc(sizeof(struct ListNode));
-			p -> next -> val = 0;
-			p = p -> next;
-		}
-		int a = p1 != 0 ? p1 -> val : 0;
-		int b = p2 != 0 ? p2 -> val : 0;
-		int s = (a+b+c)%10;
-		c = (a+b+c) / 10;
-		p->val = s;
-		p->next = 0;
-		p1 = p1 == 0 ? 0 : p1 -> next;
-		p2 = p2 == 0 ? 0 : p2 -> next;
-	}
-	return ans;
+#include <stdlib.h>
+#include "ListNode.h"
+
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+    struct ListNode* l3 = NULL, *p1 = l1, *p2 = l2, *p3 = l3, *p3_prev = NULL; int carry = 0; int turn = 0;
+  while(p1 || p2 || carry) {
+    int val1 = 0, val2 = 0, val3 = 0;
+    if (p1) {
+      val1 = p1->val;
+      p1 = p1->next;
+    }
+    if (p2) {
+      val2 = p2->val;
+      p2 = p2->next;
+    }
+    val3 = val1 + val2 + carry;
+    carry = val3 / 10;
+    p3 = (struct ListNode *) malloc(sizeof(struct ListNode)); p3->val = val3 % 10; p3->next = NULL;
+    if (!turn)
+      l3 = p3;
+    else
+      p3_prev->next = p3;
+    p3_prev = p3;
+    turn++;
+  }
+  return l3;
+}
+int main(){
+	return 0;
 }
