@@ -18,7 +18,6 @@ The next line contains N non-negative integers C1,C2,…,CN representing array C
 <br>0≤Ci≤1000, for all i from 1 to N.
 <br>Sample
 <br>Sample Input
-<br>2
 <br>7 3
 <br>1 2 3 4 5 6 7
 <br>5 10
