@@ -34,21 +34,25 @@ int sol(int N, int M, int* C, int Csize){
     return remain;
 }
 int main(){
-    int T = 2;
+    int T;
     int N;
     int M;
     int *C = (int*)malloc(sizeof(int)*1000);
     int len = 0;
-    int ans = 0;
     
+
+    scanf("%d", &T);
+
+    int ans[T];
     for(int i=0; i<T; i++){
-        printf("N M: ");
         scanf("%d %d",&N, &M);
 
         input(C, &len);
         
-        ans = sol(N,M,C,len);
-        printf("Case #%d: %d\n",i+1, ans);
+        ans[i] = sol(N,M,C,len);   
+    }
+    for(int i=0; i<T; i++){
+        printf("Case #%d: %d\n",i+1, ans[i]);
     }
     free(C);
     return 0;
